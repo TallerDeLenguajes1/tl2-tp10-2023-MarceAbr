@@ -1,11 +1,11 @@
 using System.Data.SQLite;
-using tl2_tp09_2023_MarceAbr.Models;
+using tl2_tp10_2023_MarceAbr.Models;
 
-namespace tl2_tp09_2023_MarceAbr.Repositorios
+namespace tl2_tp10_2023_MarceAbr.Repositorios
 {
     public class TareaRepository : ITareaRepository
     {
-        private string CadenaDeConexion = "Data Source=C:/Users/Marcelo/Desktop/PU/Segundo Semestre/Taller 2/tl2-tp09-2023-MarceAbr/BD/kanban.db;Cache=Shared";
+        private string CadenaDeConexion = "Data Source=C:/Users/Marcelo/Desktop/PU/Segundo Semestre/Taller 2/tl2-tp10-2023-MarceAbr/BD/kanban.db;Cache=Shared";
         public void CrearTarea(int idTab, Tarea tarea)
         {
             var queryString = @"INSERT INTO Tarea (id_tablero, nombre, estado, descripcion, color, id_usuario_asignado) 

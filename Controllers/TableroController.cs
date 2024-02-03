@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using tl2_tp09_2023_MarceAbr.Models;
-using tl2_tp09_2023_MarceAbr.Repositorios;
+using tl2_tp10_2023_MarceAbr.Repositorios;
 using tl2_tp10_2023_MarceAbr.Models;
 
 namespace tl2_tp10_2023_MarceAbr.Controllers;

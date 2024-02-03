@@ -1,0 +1,24 @@
+@using tl2_tp10_2023_MarceAbr.Models
+
+@model List<Usuario>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id:</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(Usuario usu in @Model)
+        {
+        <tr>
+            <td>@usu.Id</td>
+            <td>@usu.NombreDeUsuario</td>
+            @* <td><a asp-controller="Tablero" asp-action="ModificarTablero" asp-route-idTablero="@tablero.Id">Modificar</a></td>
+            <td><a asp-controller="Tablero" asp-action="EliminarTablero" asp-route-idTablero="@tablero.Id">Eliminar</a></td> *@
+        </tr>
+        }
+    </tbody>
+</table>

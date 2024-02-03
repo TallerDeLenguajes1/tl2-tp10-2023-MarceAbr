@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using tl2_tp09_2023_MarceAbr.Models;
-using tl2_tp09_2023_MarceAbr.Repositorios;
+using tl2_tp10_2023_MarceAbr.Repositorios;
 using tl2_tp10_2023_MarceAbr.Models;
 
 namespace tl2_tp10_2023_MarceAbr.Controllers;
@@ -15,34 +14,40 @@ public class UsuarioController : Controller
         _logger = logger;
         usuarioRepository = new UsuarioRepository();
     }
-
-    [HttpGet("Listar_Usuarios")]
+    
+    [HttpGet]
     public ActionResult<List<Usuario>> ListarUsuarios()
     {
         List<Usuario> usuarios = usuarioRepository.ListarUsuarios();
         if (usuarios != null)
         {
-            return Ok(usuarios);
+            return View(usuarios);
         } else {
             return NotFound();
         }
     }
 
-    [HttpPost("Crear_Usuario")]
+    [HttpGet]
+    public ActionResult<Usuario> AltaUsuario()
+    {
+        return View(new Usuario());
+    }
+
+    [HttpPost]
     public ActionResult<Usuario> CrearUsuario(Usuario usu)
     {
         usuarioRepository.CrearUsuario(usu);
-        return Ok(usu);
+        return RedirectToAction("ListarUsuarios");
     }
 
-    [HttpPut("Modificar_Usuario")]
+    [HttpPut]
     public ActionResult<Usuario> ModificarUsuario(int idUsu, Usuario usu) 
     {
         usuarioRepository.ModificarUsuario(idUsu, usu);
         return Ok(usu);
     }
 
-    [HttpDelete("Eliminar_Usuario")]
+    [HttpDelete]
     public ActionResult<Tarea> EliminarUsuario(int idUsu) 
     {
         usuarioRepository.EliminarUsuario(idUsu);
