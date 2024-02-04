@@ -22,7 +22,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
             }
         }
 
-        public void ModificarUsuario(int id, Usuario Usu)
+        public void ModificarUsuario(Usuario Usu)
         {
             var queryString = @"UPDATE Usuario SET nombre_de_usuario = @nombre WHERE id = @idUsu;";
 
@@ -31,7 +31,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
                 conexion.Open();
                 SQLiteCommand comando = new SQLiteCommand(queryString, conexion);
 
-                comando.Parameters.Add(new SQLiteParameter("@idUsu", id));
+                comando.Parameters.Add(new SQLiteParameter("@idUsu", Usu.Id));
                 comando.Parameters.Add(new SQLiteParameter("@nombre", Usu.NombreDeUsuario));
                 comando.ExecuteNonQuery();
 

@@ -15,36 +15,64 @@ public class TableroController : Controller
         tableroRepository = new TableroRepository();
     }
 
-    [HttpGet("Listar_Tableros")]
-    public ActionResult<List<Tablero>> ListarTableros()
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult ListarTableros()
     {
         List<Tablero> tableros = tableroRepository.ListarTableros();
         if (tableros != null)
         {
-            return Ok(tableros);
+            return View(tableros);
         } else {
             return NotFound();
         }
     }
 
-    [HttpPost("Crear_Tablero")]
-    public ActionResult<Tablero> CrearTablero(Tablero tablero)
+    [HttpGet]
+    public IActionResult CrearTablero()
+    {
+        return View(new Tablero());
+    }
+
+    [HttpPost]
+    public IActionResult AltaTablero(Tablero tablero)
     {
         tableroRepository.CrearTablero(tablero);
-        return Ok(tablero);
+        return RedirectToAction("ListarTableros");
     }
 
-    [HttpPut("Modificar_Tablero")]
-    public ActionResult<Tablero> ModificarTablero(int idTab, Tablero tablero) 
+    [HttpGet]
+    public IActionResult ModificarTablero(int idTablero)
     {
-        tableroRepository.ModificarTablero(idTab, tablero);
-        return Ok(tablero);
+        return View(tableroRepository.MostrarTableroPorId(idTablero));
     }
 
-    [HttpDelete("Eliminar_Tablero")]
-    public ActionResult<Tablero> EliminarTablero(int idTab) 
+    [HttpPost]
+    public IActionResult EditarTablero(Tablero tablero) 
     {
-        tableroRepository.EliminarTablero(idTab);
-        return Ok();
+        tableroRepository.ModificarTablero(tablero);
+        return RedirectToAction("ListarTableros");
+    }
+
+    [HttpGet]
+    public IActionResult EliminarTablero(int idTablero) 
+    {
+        return View(tableroRepository.MostrarTableroPorId(idTablero));
+    }
+
+    [HttpPost]
+    public IActionResult EliminarTab(Tablero tablero) 
+    {
+        tableroRepository.EliminarTablero(tablero.Id);
+        return RedirectToAction("ListarTableros");
     }
 }

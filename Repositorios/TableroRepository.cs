@@ -25,7 +25,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
             }
         }
 
-        public void ModificarTablero(int idTab, Tablero tab)
+        public void ModificarTablero(Tablero tab)
         {
             var queryString = @"UPDATE Tablero SET nombre = @nombre, descripcion = @desc, id_usuario_propietario = @idUsu WHERE id = @idTablero;";
 
@@ -34,7 +34,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
                 conexion.Open();
 
                 SQLiteCommand comando = new SQLiteCommand(queryString, conexion);
-                comando.Parameters.Add(new SQLiteParameter("@idTablero", idTab));
+                comando.Parameters.Add(new SQLiteParameter("@idTablero", tab.Id));
                 comando.Parameters.Add(new SQLiteParameter("@nombre", tab.Nombre));
                 comando.Parameters.Add(new SQLiteParameter("@desc", tab.Descripcion));
                 comando.Parameters.Add(new SQLiteParameter("@idUsu", tab.IdUsuario));
@@ -127,7 +127,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
 
         public void EliminarTablero(int idTab)
         {
-            var queryString = @"DELETE * FROM Tablero WHERE id = @idTablero;";
+            var queryString = @"DELETE FROM Tablero WHERE id = @idTablero;";
 
             using (SQLiteConnection conexion = new SQLiteConnection(cadenaDeConexion))
             {

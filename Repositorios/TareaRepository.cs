@@ -6,7 +6,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
     public class TareaRepository : ITareaRepository
     {
         private string CadenaDeConexion = "Data Source=C:/Users/Marcelo/Desktop/PU/Segundo Semestre/Taller 2/tl2-tp10-2023-MarceAbr/BD/kanban.db;Cache=Shared";
-        public void CrearTarea(int idTab, Tarea tarea)
+        public void CrearTarea(Tarea tarea)
         {
             var queryString = @"INSERT INTO Tarea (id_tablero, nombre, estado, descripcion, color, id_usuario_asignado) 
                                 VALUES (@idTablero, @nombre, @estado, @desc, @color, @idUsuAsignado);";
@@ -15,7 +15,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
             {
                 conexion.Open();
                 SQLiteCommand comando = new SQLiteCommand(queryString, conexion);
-                comando.Parameters.Add(new SQLiteParameter("@idTablero", idTab));
+                comando.Parameters.Add(new SQLiteParameter("@idTablero", tarea.IdTablero));
                 comando.Parameters.Add(new SQLiteParameter("@nombre", tarea.Nombre));
                 comando.Parameters.Add(new SQLiteParameter("@estado", tarea.EstadoTarea));
                 comando.Parameters.Add(new SQLiteParameter("@desc", tarea.Descripcion));
@@ -27,7 +27,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
             }
         }
 
-        public void ModificarTarea(int idTarea, Tarea tarea)
+        public void ModificarTarea(Tarea tarea)
         {
             var queryString = @"UPDATE Tarea SET nombre = @nombre, estado = @estado, descripcion = @desc,
                                 color = @color, id_usuario_asignado = @idUsuAsignado, id_tablero = @idTab WHERE id = @idTarea;";
@@ -36,7 +36,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
             {
                 conexion.Open();
                 SQLiteCommand comando = new SQLiteCommand(queryString, conexion);
-                comando.Parameters.Add(new SQLiteParameter("@idTarea", idTarea));
+                comando.Parameters.Add(new SQLiteParameter("@idTarea", tarea.Id));
                 comando.Parameters.Add(new SQLiteParameter("@idTab", tarea.IdTablero));
                 comando.Parameters.Add(new SQLiteParameter("@nombre", tarea.Nombre));
                 comando.Parameters.Add(new SQLiteParameter("@estado", tarea.EstadoTarea));

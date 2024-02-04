@@ -4,8 +4,8 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
 {
     public interface ITareaRepository
     {
-        public void CrearTarea(int idTablero, Tarea tarea);
-        public void ModificarTarea(int idTarea, Tarea tarea);
+        public void CrearTarea(Tarea tarea);
+        public void ModificarTarea(Tarea tarea);
         public Tarea MostrarTareaPorId(int idTarea);
         public List<Tarea> ListarTareaPorUsuario(int idUsu);
         public List<Tarea> ListarTareasPorTablero(int idTab);

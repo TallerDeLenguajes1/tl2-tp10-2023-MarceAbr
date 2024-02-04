@@ -14,37 +14,65 @@ public class TareaController : Controller
         _logger = logger;
         tareaRepository = new TareaRepository();
     }
+    
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-    [HttpGet("Listar_Tareas")]
-    public ActionResult<List<Tarea>> Listartareas()
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult Listartareas()
     {
         List<Tarea> tareas = tareaRepository.ListarTareas();
         if (tareas != null)
         {
-            return Ok(tareas);
+            return View(tareas);
         } else {
             return NotFound();
         }
     }
 
-    [HttpPost("Crear_Tarea")]
-    public ActionResult<Tarea> CrearTarea(int idTab, Tarea tarea)
+    [HttpGet]
+    public IActionResult CrearTarea()
     {
-        tareaRepository.CrearTarea(idTab, tarea);
-        return Ok(tarea);
+        return View(new Tarea());
     }
 
-    [HttpPut("Modificar_Tarea")]
-    public ActionResult<Tarea> ModificarTarea(int idTarea, Tarea tarea) 
+    [HttpPost]
+    public IActionResult AltaTarea(Tarea tarea)
     {
-        tareaRepository.ModificarTarea(idTarea, tarea);
-        return Ok(tarea);
+        tareaRepository.CrearTarea(tarea);
+        return RedirectToAction("Listartareas");
     }
 
-    [HttpDelete("Eliminar_Tarea")]
-    public ActionResult<Tarea> EliminarTarea(int idTarea) 
+    [HttpGet]
+    public IActionResult ModificarTarea(int idTarea) 
     {
-        tareaRepository.EliminarTarea(idTarea);
-        return Ok();
+        return View(tareaRepository.MostrarTareaPorId(idTarea));
+    }
+
+    [HttpPost]
+    public IActionResult EditarTarea(Tarea tarea) 
+    {
+        tareaRepository.ModificarTarea(tarea);
+        return RedirectToAction("ListarTareas");
+    }
+
+    [HttpGet]
+    public IActionResult EliminarTarea(int idTarea) 
+    {
+        return View(tareaRepository.MostrarTareaPorId(idTarea));
+    }
+    
+    [HttpPost]
+    public IActionResult EliminarTar(Tarea tarea) 
+    {
+        tareaRepository.EliminarTarea(tarea.Id);
+        return RedirectToAction("ListarTareas");
     }
 }

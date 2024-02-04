@@ -1,0 +1,22 @@
+@using tl2_tp10_2023_MarceAbr.Models
+
+@model Tarea
+
+<form asp-controller="Tarea" asp-action="EditarTarea">
+    <label asp-for="@Model.Id">Id</label>
+        <input asp-for="@Model.Id" value="@Model.Id">
+    <label asp-for="@Model.IdTablero">Id Tablero</label>
+        <input asp-for="@Model.IdTablero" value="@Model.IdTablero">
+    <label asp-for="@Model.Nombre">Nombre</label>
+        <input asp-for="@Model.Nombre" value="@Model.Nombre">
+    <label asp-for="@Model.Descripcion">Descripcion</label>
+        <input asp-for="@Model.Descripcion" value="@Model.Descripcion">
+    <label asp-for="@Model.Color">Color</label>
+        <input asp-for="@Model.Color" value="@Model.Color">
+    <label asp-for="@Model.EstadoTarea">Estado Tarea</label>
+        <input asp-for="@Model.EstadoTarea" value="@Model.EstadoTarea">
+    <label asp-for="@Model.IdUsuarioAsignado">Usuario asignado</label>
+        <input asp-for="@Model.IdUsuarioAsignado" value="@Model.IdUsuarioAsignado">
+    <button type="submit">Modificar Tarea</button>
+    <button><a asp-controller="Tarea" asp-action="ListarTareas">Cancelar</a></button>
+</form>

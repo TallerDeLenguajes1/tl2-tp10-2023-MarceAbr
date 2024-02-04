@@ -15,8 +15,18 @@ public class UsuarioController : Controller
         usuarioRepository = new UsuarioRepository();
     }
     
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
     [HttpGet]
-    public ActionResult<List<Usuario>> ListarUsuarios()
+    public IActionResult ListarUsuarios()
     {
         List<Usuario> usuarios = usuarioRepository.ListarUsuarios();
         if (usuarios != null)
@@ -28,29 +38,41 @@ public class UsuarioController : Controller
     }
 
     [HttpGet]
-    public ActionResult<Usuario> AltaUsuario()
+    public IActionResult CrearUsuario()
     {
         return View(new Usuario());
     }
 
     [HttpPost]
-    public ActionResult<Usuario> CrearUsuario(Usuario usu)
+    public IActionResult AltaUsuario(Usuario usu)
     {
         usuarioRepository.CrearUsuario(usu);
         return RedirectToAction("ListarUsuarios");
     }
 
-    [HttpPut]
-    public ActionResult<Usuario> ModificarUsuario(int idUsu, Usuario usu) 
-    {
-        usuarioRepository.ModificarUsuario(idUsu, usu);
-        return Ok(usu);
+    [HttpGet]
+    public IActionResult ModificarUsuario(int idUsuario)
+    {  
+        return View(usuarioRepository.MostrarUsuario(idUsuario));
     }
 
-    [HttpDelete]
-    public ActionResult<Tarea> EliminarUsuario(int idUsu) 
+    [HttpPost]
+    public IActionResult EditarUsuario(Usuario usu)
     {
-        usuarioRepository.EliminarUsuario(idUsu);
-        return Ok();
+        usuarioRepository.ModificarUsuario(usu);
+        return RedirectToAction("ListarUsuarios");
+    }
+
+    [HttpGet]
+    public IActionResult EliminarUsuario(int idUsuario)
+    {
+        return View(usuarioRepository.MostrarUsuario(idUsuario));
+    }
+
+    [HttpPost]
+    public IActionResult EliminarUsu(Usuario usu)
+    {
+        usuarioRepository.EliminarUsuario(usu.Id);
+        return RedirectToAction("ListarUsuarios");
     }
 }
