@@ -4,13 +4,13 @@
 
 <form asp-controller="Tablero" asp-action="EditarTablero">
     <label asp-for="@Model.Id">Id</label>
-        <input asp-for="@Model.Id" value="@Model.Id">
+        <input asp-for="@Model.Id" class="form-control" value="@Model.Id">
     <label asp-for="@Model.IdUsuario">Id usuario propietario</label>
-        <input asp-for="@Model.IdUsuario" value="@Model.IdUsuario">
+        <input asp-for="@Model.IdUsuario" class="form-control" value="@Model.IdUsuario">
     <label asp-for="@Model.Nombre">Nombre</label>
-        <input asp-for="@Model.Nombre" value="@Model.Nombre">
+        <input asp-for="@Model.Nombre" class="form-control" value="@Model.Nombre">
     <label asp-for="@Model.Descripcion">Descripcion</label>
-        <input asp-for="@Model.Descripcion" value="@Model.Descripcion">
-    <button type="submit">Modificar Tablero</button>
-    <button><a asp-controller="Tablero" asp-action="ListarTableros">Cancelar</a></button>
+        <input asp-for="@Model.Descripcion" class="form-control" value="@Model.Descripcion">
+    <button type="submit" class="form-control">Modificar Tablero</button>
+    <button><a asp-controller="Tablero" class="form-control" asp-action="ListarTableros">Cancelar</a></button>
 </form>

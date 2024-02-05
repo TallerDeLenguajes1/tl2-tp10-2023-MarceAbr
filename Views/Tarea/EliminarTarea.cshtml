@@ -4,13 +4,13 @@
 
 <form asp-controller="Tarea" asp-action="EliminarTar">
     <label asp-for="@Model.Id">Id</label>
-        <input asp-for="@Model.Id" value="@Model.Id">
+        <input asp-for="@Model.Id" class="form-control" value="@Model.Id">
     <label asp-for="@Model.IdTablero">Id Tablero</label>
-        <input asp-for="@Model.IdTablero" value="@Model.IdTablero">
+        <input asp-for="@Model.IdTablero" class="form-control" value="@Model.IdTablero">
     <label asp-for="@Model.Nombre">Nombre</label>
-        <input asp-for="@Model.Nombre" value="@Model.Nombre">
+        <input asp-for="@Model.Nombre" class="form-control" value="@Model.Nombre">
     <label asp-for="@Model.Descripcion">Descripcion</label>
-        <input asp-for="@Model.Descripcion" value="@Model.Descripcion">
-    <button type="submit">Eliminar</button>
-    <button><a asp-controller="Tarea" asp-action="ListarTareas">Cancelar</a></button>
+        <input asp-for="@Model.Descripcion" class="form-control" value="@Model.Descripcion">
+    <button type="submit" class="form-control">Eliminar</button>
+    <button><a asp-controller="Tarea" class="form-control" asp-action="ListarTareas">Cancelar</a></button>
 </form>

@@ -1,0 +1,13 @@
+@model tl2_tp10_2023_MarceAbr.ViewModels.LoginViewModel
+
+<form asp-controller="Login" asp-action="Login" method="post">
+        <label asp-for="@Model.NombreDeUsuario"></label>
+            <input asp-for="@Model.NombreDeUsuario" class="form-control"/>
+            <span asp-validation-for="@Model.NombreDeUsuario" class="text-danger"></span>
+        <label asp-for="@Model.Contrasena"></label>
+            <input asp-for="@Model.Contrasena" class="form-control" />
+            <span asp-validation-for="@Model.Contrasena" class="text-danger"></span>
+        <button type="submit" class="btn btn-info">Iniciar Sesión</button>
+</form>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

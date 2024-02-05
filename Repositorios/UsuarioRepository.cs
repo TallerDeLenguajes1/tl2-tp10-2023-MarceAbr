@@ -9,13 +9,15 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
         private string CadenaDeConexion = "Data Source=C:/Users/Marcelo/Desktop/PU/Segundo Semestre/Taller 2/tl2-tp10-2023-MarceAbr/BD/kanban.db;Cache=Shared";
         public void CrearUsuario(Usuario usu)
         {
-            var queryString = @"INSERT INTO Usuario (nombre_de_usuario) VALUES(@nombre);";
+            var queryString = @"INSERT INTO Usuario (nombre_de_usuario, contrasena, rol) VALUES(@nombre, @contra, @rol);";
 
             using(SQLiteConnection conexion = new SQLiteConnection(CadenaDeConexion))
             {
                 conexion.Open();
                 SQLiteCommand comando = new SQLiteCommand(queryString, conexion);
                 comando.Parameters.Add(new SQLiteParameter("@nombre", usu.NombreDeUsuario));
+                comando.Parameters.Add(new SQLiteParameter("@contra", usu.Contrasena));
+                comando.Parameters.Add(new SQLiteParameter("@rol", usu.Rol));
                 comando.ExecuteNonQuery();
 
                 conexion.Close();   
@@ -24,7 +26,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
 
         public void ModificarUsuario(Usuario Usu)
         {
-            var queryString = @"UPDATE Usuario SET nombre_de_usuario = @nombre WHERE id = @idUsu;";
+            var queryString = @"UPDATE Usuario SET nombre_de_usuario = @nombre, contrasena = @contra, rol = @rol WHERE id = @idUsu;";
 
             using(SQLiteConnection conexion = new SQLiteConnection(CadenaDeConexion))
             {
@@ -33,6 +35,8 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
 
                 comando.Parameters.Add(new SQLiteParameter("@idUsu", Usu.Id));
                 comando.Parameters.Add(new SQLiteParameter("@nombre", Usu.NombreDeUsuario));
+                comando.Parameters.Add(new SQLiteParameter("@contra", Usu.Contrasena));
+                comando.Parameters.Add(new SQLiteParameter("@rol", Usu.Rol));
                 comando.ExecuteNonQuery();
 
                 conexion.Close();
@@ -56,6 +60,8 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
                         Usuario usuario = new Usuario();
                         usuario.Id = Convert.ToInt32(reader["id"]);
                         usuario.NombreDeUsuario = reader["nombre_de_usuario"].ToString();
+                        usuario.Contrasena = reader["contrasena"].ToString();
+                        usuario.Rol = (Rol)Convert.ToInt32(reader["rol"]);
                         usuarios.Add(usuario);
                     }
                 }
@@ -80,7 +86,9 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
                     if(reader.Read())
                     {
                         usuario.Id = Convert.ToInt32(reader["id"]);
-                        usuario.NombreDeUsuario = reader["nombre_de_usuario"].ToString();                          
+                        usuario.NombreDeUsuario = reader["nombre_de_usuario"].ToString();
+                        usuario.Contrasena = reader["contrasena"].ToString();
+                        usuario.Rol = (Rol)Convert.ToInt32(reader["rol"]);                          
                     }
                 }
                 conexion.Close();

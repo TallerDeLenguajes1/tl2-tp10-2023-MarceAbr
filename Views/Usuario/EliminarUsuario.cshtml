@@ -4,9 +4,9 @@
 
 <form asp-controller="Usuario" asp-action="EliminarUsu">
     <label asp-for="@Model.Id">Id</label>
-        <input asp-for="@Model.Id" value="@Model.Id">
+        <input asp-for="@Model.Id" class="form-control" value="@Model.Id">
     <label asp-for="@Model.NombreDeUsuario">Id</label>
-        <input asp-for="@Model.NombreDeUsuario" value="@Model.NombreDeUsuario">
-    <button type="submit">Eliminar</button>
-    <button><a asp-controller="Usuario" asp-action="ListarUsuarios">Cancelar</a></button>
+        <input asp-for="@Model.NombreDeUsuario" class="form-control" value="@Model.NombreDeUsuario">
+    <button type="submit" class="form-control" >Eliminar</button>
+    <button><a asp-controller="Usuario" class="form-control" asp-action="ListarUsuarios">Cancelar</a></button>
 </form>

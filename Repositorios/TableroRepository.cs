@@ -99,7 +99,7 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
 
         public List<Tablero> ListarTableroPorUsuario(int idUsuario)
         {
-            var queryString = @"SELECT * FROM Tablero WHERE id = @idUsu;";
+            var queryString = @"SELECT * FROM Tablero WHERE id_usuario_propietario = @idUsu;";
             List<Tablero> tableros = new List<Tablero>();
 
             using (SQLiteConnection conexion = new SQLiteConnection(cadenaDeConexion))

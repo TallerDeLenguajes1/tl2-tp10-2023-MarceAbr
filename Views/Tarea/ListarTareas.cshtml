@@ -26,12 +26,12 @@
             <td>@tarea.Color</td>
             <td>@tarea.EstadoTarea</td>
             <td>@tarea.IdUsuarioAsignado</td>
-            <td><a asp-controller="Tarea" asp-action="ModificarTarea" asp-route-idTarea="@tarea.Id">Modificar</a></td>
-            <td><a asp-controller="Tarea" asp-action="EliminarTarea" asp-route-idTarea="@tarea.Id">Eliminar</a></td>
+            <td><a asp-controller="Tarea" class="form-control" asp-action="ModificarTarea" asp-route-idTarea="@tarea.Id">Modificar</a></td>
+            <td><a asp-controller="Tarea" class="form-control" asp-action="EliminarTarea" asp-route-idTarea="@tarea.Id">Eliminar</a></td>
         </tr>
         }
         <tr>
-            <td><a asp-controller="Tarea" asp-action="CrearTarea">Crear Tarea</a></td>
+            <td><a asp-controller="Tarea" class="form-control" asp-action="CrearTarea">Crear Tarea</a></td>
         </tr>
     </tbody>
 </table>
