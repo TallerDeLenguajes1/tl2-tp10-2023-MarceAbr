@@ -1,6 +1,6 @@
-@using tl2_tp10_2023_MarceAbr.Models
+@using tl2_tp10_2023_MarceAbr.ViewModels
 
-@model Tarea
+@model ModificarTareaViewModel
 
 <form asp-controller="Tarea" asp-action="EditarTarea">
     <label asp-for="@Model.Id">Id</label>
@@ -20,3 +20,5 @@
     <button type="submit" class="form-control">Modificar Tarea</button>
     <button><a asp-controller="Tarea" class="form-control" asp-action="ListarTareas">Cancelar</a></button>
 </form>
+
+@section Scripts {<partial name="_ValidationScriptsPartial"/>}

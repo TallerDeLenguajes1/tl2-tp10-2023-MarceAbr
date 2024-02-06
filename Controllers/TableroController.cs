@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using tl2_tp10_2023_MarceAbr.Repositorios;
 using tl2_tp10_2023_MarceAbr.Models;
+using tl2_tp10_2023_MarceAbr.ViewModels;
 
 namespace tl2_tp10_2023_MarceAbr.Controllers;
 
@@ -34,7 +35,7 @@ public class TableroController : Controller
 
         if (isAdmin())
         {    
-            List<Tablero> tableros = tableroRepository.ListarTableros();
+            ListarTablerosViewModel tableros = new ListarTablerosViewModel(tableroRepository.ListarTableros());
             if (tableros != null)
             {
                 ViewBag.Rol = rolUsuario;
@@ -62,7 +63,7 @@ public class TableroController : Controller
     {
         if(!isLogged()) return RedirectToRoute(new { controller = "Login", action = "Index"});
         if(!isAdmin()) return RedirectToAction("ListarTableros");
-        return View(new Tablero());
+        return View(new CrearTableroViewModel());
     }
 
     [HttpPost]
@@ -78,7 +79,7 @@ public class TableroController : Controller
     {
         if(!isLogged()) return RedirectToRoute(new { controller = "Login", action = "Index"});
         if(!isAdmin()) return RedirectToAction("ListarTableros");
-        return View(tableroRepository.MostrarTableroPorId(idTablero));
+        return View(new ModificarTableroViewModel(tableroRepository.MostrarTableroPorId(idTablero)));
     }
 
     [HttpPost]

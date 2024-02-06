@@ -18,6 +18,20 @@ namespace tl2_tp10_2023_MarceAbr.Models
         private Estado estadoTarea;
         private int idUsuarioAsignado;
 
+        public Tarea()
+        {
+        }
+
+        public Tarea(int idTablero, string nombre, string descripcion, string color, int idUsuarioAsignado, Estado est)
+        {
+            this.idTablero = idTablero;
+            this.nombre = nombre;
+            this.descripcion = descripcion;
+            this.color = color;
+            this.idUsuarioAsignado = idUsuarioAsignado;
+            this.estadoTarea = est;
+        }
+
         public int Id { get => id; set => id = value; }
         public int IdTablero { get => idTablero; set => idTablero = value; }
         public string? Nombre {get => nombre; set => nombre = value;}

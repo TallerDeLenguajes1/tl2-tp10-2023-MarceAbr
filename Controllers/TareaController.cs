@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using tl2_tp10_2023_MarceAbr.Repositorios;
 using tl2_tp10_2023_MarceAbr.Models;
+using tl2_tp10_2023_MarceAbr.ViewModels;
 
 namespace tl2_tp10_2023_MarceAbr.Controllers;
 
@@ -29,7 +30,7 @@ public class TareaController : Controller
     public IActionResult Listartareas()
     {
         if(!isLogged()) return RedirectToRoute(new { controller = "Login", action = "Index"});
-        List<Tarea> tareas = tareaRepository.ListarTareas();
+        ListarTareasViewModel tareas = new ListarTareasViewModel(tareaRepository.ListarTareas()); 
         if (tareas != null)
         {
             return View(tareas);
@@ -43,7 +44,7 @@ public class TareaController : Controller
     {
         if(!isLogged()) return RedirectToRoute(new { controller = "Login", action = "Index"});
         if(!isAdmin()) return RedirectToAction("ListarTareas");
-        return View(new Tarea());
+        return View(new CrearTareaViewModel());
     }
 
     [HttpPost]
@@ -59,7 +60,7 @@ public class TareaController : Controller
     {
         if(!isLogged()) return RedirectToRoute(new { controller = "Login", action = "Index"});
         if(!isAdmin()) return RedirectToAction("ListarTareas");
-        return View(tareaRepository.MostrarTareaPorId(idTarea));
+        return View(new ModificarTareaViewModel(tareaRepository.MostrarTareaPorId(idTarea)));
     }
 
     [HttpPost]

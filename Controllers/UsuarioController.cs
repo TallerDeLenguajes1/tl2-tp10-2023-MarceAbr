@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using tl2_tp10_2023_MarceAbr.Repositorios;
 using tl2_tp10_2023_MarceAbr.Models;
+using tl2_tp10_2023_MarceAbr.ViewModels;
 
 namespace tl2_tp10_2023_MarceAbr.Controllers;
 
@@ -32,7 +33,7 @@ public class UsuarioController : Controller
 
         string rolUsuario = HttpContext.Session.GetString("Rol");
 
-        List<Usuario> usuarios = usuarioRepository.ListarUsuarios();
+        ListarUsuariosViewModel usuarios = new ListarUsuariosViewModel(usuarioRepository.ListarUsuarios());
         if (usuarios != null)
         {
             ViewBag.Rol = rolUsuario;
@@ -47,7 +48,7 @@ public class UsuarioController : Controller
     {
         if(!isLogged()) return RedirectToRoute(new { controller = "Login", action = "Index"});
         if(!isAdmin()) return RedirectToAction("ListarUsuarios");
-        return View(new Usuario());
+        return View(new CrearUsuarioViewModel());
     }
 
     [HttpPost]
@@ -63,7 +64,7 @@ public class UsuarioController : Controller
     {  
         if(!isLogged()) return RedirectToRoute(new { controller = "Login", action = "Index"});
         if(!isAdmin()) return RedirectToAction("ListarUsuarios");
-        return View(usuarioRepository.MostrarUsuario(idUsuario));
+        return View(new ModificarUsuarioViewModel(usuarioRepository.MostrarUsuario(idUsuario)));
     }
 
     [HttpPost]

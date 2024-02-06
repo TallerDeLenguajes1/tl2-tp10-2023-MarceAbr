@@ -1,13 +1,9 @@
-@using tl2_tp10_2023_MarceAbr.Models
+@using tl2_tp10_2023_MarceAbr.ViewModels
 
-@model Tablero
+@model CrearTableroViewModel
 
 <h1>@ViewData["Crear Tablero"]</h1>
 <form asp-controller="Tablero" asp-action="AltaTablero" method="post">
-    <div class="form-group">
-        <label asp-for="@Model.Id"></label>
-        <input asp-for="@Model.Id" class="form-control" id="id" />
-    </div>
     <div class="form-group">
         <label asp-for="@Model.IdUsuario"></label>
         <input asp-for="@Model.IdUsuario" class="form-control" id="idUsuario" />
@@ -23,3 +19,5 @@
     <button type="submit" class="form-control" class="btn btn-primary" >Enviar</button>
     <button><a asp-controller="Tablero" class="form-control" asp-action="ListarTableros">Cancelar</a></button>
 </form>
+
+@section Scripts {<partial name="_ValidationScriptsPartial"/>}

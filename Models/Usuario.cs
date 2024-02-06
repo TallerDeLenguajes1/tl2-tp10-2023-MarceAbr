@@ -12,6 +12,17 @@ namespace tl2_tp10_2023_MarceAbr.Models
         private Rol rol;
         private string? contrasena;
 
+        public Usuario()
+        {
+        }
+
+        public Usuario(string nombreDeUsuario, string contra, Rol rol)
+        {
+            this.nombreDeUsuario = nombreDeUsuario;
+            this.contrasena = contra;
+            this.rol = rol;
+        }
+
         public int Id { get => id; set => id = value; }
         public string? NombreDeUsuario { get => nombreDeUsuario; set => nombreDeUsuario = value; }
         public Rol Rol { get => rol; set => rol = value; }

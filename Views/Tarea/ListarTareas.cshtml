@@ -1,6 +1,6 @@
-@using tl2_tp10_2023_MarceAbr.Models
+@using tl2_tp10_2023_MarceAbr.ViewModels
 
-@model List<Tarea>
+@model ListarTareasViewModel
 
 <table>
     <thead>
@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-        @foreach(Tarea tarea in @Model)
+        @foreach(TareaViewModel tarea in @Model.TareasVM)
         {
         <tr>
             <td>@tarea.Id</td>
@@ -35,3 +35,5 @@
         </tr>
     </tbody>
 </table>
+
+@section Scripts {<partial name="_ValidationScriptsPartial"/>}
