@@ -10,10 +10,10 @@ public class TableroController : Controller
 {
     private readonly ILogger<TableroController> _logger;
     private ITableroRepository tableroRepository;
-    public TableroController(ILogger<TableroController> logger)
+    public TableroController(ILogger<TableroController> logger, ITableroRepository _tableroRepository)
     {
         _logger = logger;
-        tableroRepository = new TableroRepository();
+        tableroRepository = _tableroRepository;
     }
 
     public IActionResult Index()

@@ -5,7 +5,12 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
 {
     public class TareaRepository : ITareaRepository
     {
-        private string CadenaDeConexion = "Data Source=C:/Users/Marcelo/Desktop/PU/Segundo Semestre/Taller 2/tl2-tp10-2023-MarceAbr/BD/kanban.db;Cache=Shared";
+        // private string CadenaDeConexion = "Data Source=C:/Users/Marcelo/Desktop/PU/Segundo Semestre/Taller 2/tl2-tp10-2023-MarceAbr/BD/kanban.db;Cache=Shared";
+        private string CadenaDeConexion;
+        public TareaRepository(string cadenaDeConexion)
+        {
+            CadenaDeConexion = cadenaDeConexion;
+        }
         public void CrearTarea(Tarea tarea)
         {
             var queryString = @"INSERT INTO Tarea (id_tablero, nombre, estado, descripcion, color, id_usuario_asignado) 

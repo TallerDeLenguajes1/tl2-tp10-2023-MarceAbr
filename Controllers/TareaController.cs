@@ -10,10 +10,10 @@ public class TareaController : Controller
 {
     private readonly ILogger<TareaController> _logger;
     private ITareaRepository tareaRepository;
-    public TareaController(ILogger<TareaController> logger)
+    public TareaController(ILogger<TareaController> logger, ITareaRepository _tareaRepository)
     {
         _logger = logger;
-        tareaRepository = new TareaRepository();
+        tareaRepository = _tareaRepository;
     }
     
     public IActionResult Index()

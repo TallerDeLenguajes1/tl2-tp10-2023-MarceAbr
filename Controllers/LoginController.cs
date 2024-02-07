@@ -4,7 +4,7 @@ using tl2_tp10_2023_MarceAbr.Models;
 using tl2_tp10_2023_MarceAbr.Repositorios;
 using tl2_tp10_2023_MarceAbr.ViewModels;
 
-namespace tl2_tp10_2023_juanigramajo.Controllers
+namespace tl2_tp10_2023_MarceAbr.Controllers
 {
     public class LoginController : Controller
     {
@@ -12,10 +12,10 @@ namespace tl2_tp10_2023_juanigramajo.Controllers
         private readonly ILogger<LoginController> _logger;
 
 
-        public LoginController(ILogger<LoginController> logger)
+        public LoginController(ILogger<LoginController> logger, IUsuarioRepository _usuarioRepository)
         {
             _logger = logger;
-            usuarioRepository = new UsuarioRepository();
+            usuarioRepository = _usuarioRepository;
         }
 
 

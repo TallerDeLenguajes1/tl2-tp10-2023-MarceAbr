@@ -5,8 +5,13 @@ namespace tl2_tp10_2023_MarceAbr.Repositorios
 {
     public class TableroRepository : ITableroRepository
     {
-        private string cadenaDeConexion = "Data Source=C:/Users/Marcelo/Desktop/PU/Segundo Semestre/Taller 2/tl2-tp10-2023-MarceAbr/BD/kanban.db;Cache=Shared";
-
+        // private string cadenaDeConexion = "Data Source=C:/Users/Marcelo/Desktop/PU/Segundo Semestre/Taller 2/tl2-tp10-2023-MarceAbr/BD/kanban.db;Cache=Shared";
+        private string cadenaDeConexion;
+        public TableroRepository(string CadenaDeConexion)
+        {
+            cadenaDeConexion = CadenaDeConexion;
+        }
+        
         public void CrearTablero(Tablero tab)
         {
             var queryString = @"INSERT INTO Tablero (id_usuario_propietario, nombre, descripcion) VALUES(@idUsu, @nombre, @desc);";
