@@ -9,8 +9,10 @@
         <input asp-for="@Model.IdUsuario" class="form-control" value="@Model.IdUsuario">
     <label asp-for="@Model.Nombre">Nombre</label>
         <input asp-for="@Model.Nombre" class="form-control" value="@Model.Nombre">
+        <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
     <label asp-for="@Model.Descripcion">Descripcion</label>
         <input asp-for="@Model.Descripcion" class="form-control" value="@Model.Descripcion">
+        <span asp-validation-for="@Model.Descripcion" class="text-danger"></span>
     <button type="submit" class="form-control">Modificar Tablero</button>
     <button><a asp-controller="Tablero" class="form-control" asp-action="ListarTableros">Cancelar</a></button>
 </form>

@@ -7,10 +7,12 @@
         <input asp-for="@Model.Id" class="form-control" value="@Model.Id">
     <label asp-for="@Model.NombreDeUsuario">Nombre de usuario</label>
         <input asp-for="@Model.NombreDeUsuario" class="form-control" value="@Model.NombreDeUsuario">
+        <span asp-validation-for="@Model.NombreDeUsuario" class="text-danger"></span>
     <label asp-for="@Model.Rol">Nombre de usuario</label>
         <input asp-for="@Model.Rol" class="form-control" value="@Model.Rol">
     <label asp-for="@Model.Contrasena">Nombre de usuario</label>
         <input asp-for="@Model.Contrasena" class="form-control" value="@Model.Contrasena">
+        <span asp-validation-for="@Model.Contrasena" class="text-danger"></span>
     <button type="submit" class="form-control" >Modificar Usuario</button>
     <button><a asp-controller="Usuario" class="form-control" asp-action="ListarUsuarios">Cancelar</a></button>
 </form>
